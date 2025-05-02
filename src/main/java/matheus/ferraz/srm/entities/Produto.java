@@ -7,7 +7,7 @@ import lombok.*;
 @ToString
 public class Produto {
     private Integer idProduto;
-    private String nome;
+    private String nomeProduto;
     private Double valorOuro;
     private Double valorTibar;
     private Integer fkReinoOrigem;
