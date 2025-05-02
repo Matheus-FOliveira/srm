@@ -53,6 +53,4 @@ INSERT INTO moeda (nomeMoeda) VALUES
  
  INSERT INTO taxa (valorTaxa, dataMudanca) VALUES
  (2.5, CURRENT_DATE());
- 
- select * from moeda;
 ;
