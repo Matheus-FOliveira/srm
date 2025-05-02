@@ -1,4 +1,5 @@
 -- Script SQL para Database
+-- O arquivo do Diagrama ER também está presente, com nome "DiagramaSRM"
 
 create database srm;
 use srm;
