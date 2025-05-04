@@ -11,4 +11,5 @@ public interface TaxaRepository {
     Integer add(Taxa taxa);
     Integer update(Taxa taxa, Integer id);
     Integer delete(Integer id);
+    Optional<Taxa> getCurrent();
 }

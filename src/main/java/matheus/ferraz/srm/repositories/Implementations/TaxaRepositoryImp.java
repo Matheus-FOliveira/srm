@@ -59,4 +59,12 @@ public class TaxaRepositoryImp implements TaxaRepository {
                 .param("id", id)
                 .update();
     }
+
+    @Override
+    public Optional<Taxa> getCurrent(){
+        return this.jdbcClient
+                .sql("SELECT * FROM taxa ORDER BY idTaxa DESC LIMIT 1")
+                .query(Taxa.class)
+                .optional();
+    }
 }

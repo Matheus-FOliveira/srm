@@ -14,9 +14,11 @@ public class ProdutoController {
 
     private final ProdutoService produtoService;
 
-    public ProdutoController(ProdutoService produtoService) {
+
+    public ProdutoController(ProdutoService produtoService, TaxaController taxa) {
         this.produtoService = produtoService;
     }
+
 
     @GetMapping
     public ResponseEntity<List<Produto>> findAll(){
@@ -30,8 +32,11 @@ public class ProdutoController {
         return ResponseEntity.ok(produto);
     }
 
-    @PostMapping
-    public ResponseEntity<Void> add(@RequestBody Produto produto){
+    @PostMapping("/ouro")
+    public ResponseEntity<Void> addOuro(String nome, Double valorOuro, Integer fkReinoOrigem){
+        Double valorTibar = this.produtoService.converterOuro(valorOuro);
+        Produto produto = new Produto();
+
         this.produtoService.addProduto(produto);
         return ResponseEntity.status(201).build();
     }

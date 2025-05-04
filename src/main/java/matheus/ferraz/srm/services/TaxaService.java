@@ -2,11 +2,13 @@ package matheus.ferraz.srm.services;
 
 import matheus.ferraz.srm.entities.Taxa;
 import matheus.ferraz.srm.repositories.TaxaRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class TaxaService {
     private final TaxaRepository taxaRepository;
 
@@ -20,6 +22,10 @@ public class TaxaService {
 
     public Optional<Taxa> findTaxaById(Integer id){
         return this.taxaRepository.findById(id);
+    }
+
+    public Optional<Taxa> getCurrent(){
+        return this.taxaRepository.getCurrent();
     }
 
     public void addTaxa(Taxa taxa){

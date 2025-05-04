@@ -11,9 +11,11 @@ import java.util.Optional;
 @Service
 public class ProdutoService {
     private final ProdutoRepository produtoRepository;
+    private final TaxaService taxa;
 
-    public ProdutoService(ProdutoRepository produtoRepository){
+    public ProdutoService(ProdutoRepository produtoRepository, TaxaService taxa){
         this.produtoRepository = produtoRepository;
+        this.taxa = taxa;
     }
 
     public List<Produto> findAllProdutos(){
@@ -41,5 +43,15 @@ public class ProdutoService {
         if (delete == 0){
             throw new RuntimeException("ID não encontrado");
         }
+    }
+
+    public Double converterOuro(Double ouro){
+        var taxaAtual = this.taxa.getCurrent().get().getValorTaxa();
+        return ouro * taxaAtual;
+    }
+
+    public Double converterTibar(Double tibar){
+        var taxaAtual = this.taxa.getCurrent().get().getValorTaxa();
+        return tibar / taxaAtual;
     }
 }

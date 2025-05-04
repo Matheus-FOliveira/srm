@@ -3,6 +3,7 @@ package matheus.ferraz.srm.entities;
 import lombok.*;
 
 @Getter
+@Setter
 @EqualsAndHashCode
 @ToString
 public class Produto {
