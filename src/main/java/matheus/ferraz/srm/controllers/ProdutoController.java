@@ -32,12 +32,6 @@ public class ProdutoController {
         return ResponseEntity.ok(produto);
     }
 
-    @PostMapping
-    public ResponseEntity<Void> addProduto(@RequestBody Produto produto){
-        this.produtoService.addProduto(produto);
-        return ResponseEntity.status(201).build();
-    }
-
     @PostMapping("/ouro")
     public ResponseEntity<Void> addOuro(
             @RequestParam String nome,

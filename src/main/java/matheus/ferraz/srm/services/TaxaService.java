@@ -34,17 +34,17 @@ public class TaxaService {
         Assert.state(save == 1, "Erro ao salvar ");
     }
 
-    public void updateTaxa(Taxa taxa, Integer id){
-        var update = this.taxaRepository.update(taxa, id);
-        if (update == 0){
-            throw new RuntimeException("ID não encontrado");
-        }
-    }
+//    public void updateTaxa(Taxa taxa, Integer id){
+//        var update = this.taxaRepository.update(taxa, id);
+//        if (update == 0){
+//            throw new RuntimeException("ID não encontrado");
+//        }
+//    }
 
-    public void deleteTaxa(Integer id){
-        var delete = this.taxaRepository.delete(id);
-        if (delete == 0){
-            throw new RuntimeException("ID não encontrado");
-        }
-    }
+//    public void deleteTaxa(Integer id){
+//        var delete = this.taxaRepository.delete(id);
+//        if (delete == 0){
+//            throw new RuntimeException("ID não encontrado");
+//        }
+//    }
 }
