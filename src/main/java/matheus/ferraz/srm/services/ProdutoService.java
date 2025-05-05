@@ -1,6 +1,7 @@
 package matheus.ferraz.srm.services;
 
 import matheus.ferraz.srm.entities.Produto;
+import matheus.ferraz.srm.entities.Reino;
 import matheus.ferraz.srm.repositories.ProdutoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -12,10 +13,12 @@ import java.util.Optional;
 public class ProdutoService {
     private final ProdutoRepository produtoRepository;
     private final TaxaService taxa;
+    private final ReinoService reino;
 
-    public ProdutoService(ProdutoRepository produtoRepository, TaxaService taxa){
+    public ProdutoService(ProdutoRepository produtoRepository, TaxaService taxa, ReinoService reino){
         this.produtoRepository = produtoRepository;
         this.taxa = taxa;
+        this.reino = reino;
     }
 
     public List<Produto> findAllProdutos(){
@@ -53,5 +56,10 @@ public class ProdutoService {
     public Double converterTibar(Double tibar){
         var taxaAtual = this.taxa.getCurrent().get().getValorTaxa();
         return tibar / taxaAtual;
+    }
+
+    public Double getTaxaRegional(Integer id){
+        Integer idReino = this.produtoRepository.findById(id).get().getFkReinoOrigem();
+        return this.reino.findReinoById(idReino).get().getTaxaReino();
     }
 }

@@ -11,9 +11,16 @@ import java.util.Optional;
 @Service
 public class TransacaoService {
     private final TransacaoRepository transacaoRepository;
+    private final ProdutoService produtoService;
+    private final MoedaService moedaService;
+    private final TaxaService taxaService;
 
-    public TransacaoService(TransacaoRepository transacaoRepository){
+    public TransacaoService(TransacaoRepository transacaoRepository, ProdutoService produtoService, MoedaService moedaService, TaxaService taxaService){
         this.transacaoRepository = transacaoRepository;
+        this.produtoService = produtoService;
+        this.moedaService = moedaService;
+
+        this.taxaService = taxaService;
     }
 
     public List<Transacao> findAllTransacaos(){
@@ -41,5 +48,14 @@ public class TransacaoService {
         if (delete == 0){
             throw new RuntimeException("ID não encontrado");
         }
+    }
+
+    public Double calcularValorFinal(Integer idProduto, Integer idMoedaOrigem, Integer idMoedaDestino){
+        Double precoBase = this.produtoService.findProdutoById(idProduto).get().getValorOuro();
+        Double taxaRegional = this.produtoService.getTaxaRegional(idProduto);
+        if(idMoedaOrigem != 1){
+            this.produtoService.converterOuro(precoBase);
+        }
+        return precoBase * taxaRegional;
     }
 }
