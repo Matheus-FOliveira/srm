@@ -18,7 +18,7 @@ public class MoedaRepositoryImp implements MoedaRepository {
     @Override
     public Optional<Moeda> findById(Integer id) {
         return this.jdbcClient
-                .sql("SELECT * FROM moeda WHERE id = :id")
+                .sql("SELECT * FROM moeda WHERE idMoeda = :id")
                 .param("id", id)
                 .query(Moeda.class)
                 .optional();
@@ -43,7 +43,7 @@ public class MoedaRepositoryImp implements MoedaRepository {
     @Override
     public Integer update(Moeda moeda, Integer id) {
         return this.jdbcClient
-                .sql("UPDATE moeda SET nomeMoeda = :nomeMoeda WHERE id = :id")
+                .sql("UPDATE moeda SET nomeMoeda = :nomeMoeda WHERE idMoeda = :id")
                 .param("id",id)
                 .param("nomeMoeda", moeda.getNomeMoeda())
                 .update();
@@ -52,7 +52,7 @@ public class MoedaRepositoryImp implements MoedaRepository {
     @Override
     public Integer delete(Integer id) {
         return this.jdbcClient
-                .sql("DELETE FROM moeda WHERE id = :id")
+                .sql("DELETE FROM moeda WHERE idMoeda = :id")
                 .param("id", id)
                 .update();
     }

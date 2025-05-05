@@ -19,7 +19,7 @@ public class ProdutoRepositoryImp implements ProdutoRepository {
     @Override
     public Optional<Produto> findById(Integer id) {
         return this.jdbcClient
-                .sql("SELECT * FROM produto WHERE id = :id")
+                .sql("SELECT * FROM produto WHERE idProduto = :id")
                 .param("id", id)
                 .query(Produto.class)
                 .optional();
@@ -47,7 +47,7 @@ public class ProdutoRepositoryImp implements ProdutoRepository {
     @Override
     public Integer update(Produto produto, Integer id) {
         return this.jdbcClient
-                .sql("UPDATE produto SET nomeProduto = :nomeProduto, valorOuro = :valorOuro, valorTibar = :valorTibar, fkReinoOrigem = :fkReinoOrigem WHERE id = :id")
+                .sql("UPDATE produto SET nomeProduto = :nomeProduto, valorOuro = :valorOuro, valorTibar = :valorTibar, fkReinoOrigem = :fkReinoOrigem WHERE idProduto = :id")
                 .param("id",id)
                 .param("nomeProduto", produto.getNomeProduto())
                 .param("valorOuro", produto.getValorOuro())
@@ -59,7 +59,7 @@ public class ProdutoRepositoryImp implements ProdutoRepository {
     @Override
     public Integer delete(Integer id) {
         return this.jdbcClient
-                .sql("DELETE FROM produto WHERE id = :id")
+                .sql("DELETE FROM produto WHERE idProduto = :id")
                 .param("id", id)
                 .update();
     }

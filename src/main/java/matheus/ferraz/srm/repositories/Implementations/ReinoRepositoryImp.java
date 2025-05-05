@@ -18,7 +18,7 @@ public class ReinoRepositoryImp implements ReinoRepository {
     @Override
     public Optional<Reino> findById(Integer id) {
         return this.jdbcClient
-                .sql("SELECT * FROM reino WHERE id = :id")
+                .sql("SELECT * FROM reino WHERE idReino = :id")
                 .param("id", id)
                 .query(Reino.class)
                 .optional();
@@ -44,7 +44,7 @@ public class ReinoRepositoryImp implements ReinoRepository {
     @Override
     public Integer update(Reino reino, Integer id) {
         return this.jdbcClient
-                .sql("UPDATE reino SET nomeReino = :nomeReino, taxaReino = :taxaReino WHERE id = :id")
+                .sql("UPDATE reino SET nomeReino = :nomeReino, taxaReino = :taxaReino WHERE idReino = :id")
                 .param("id",id)
                 .param("nomeReino", reino.getNomeReino())
                 .param("taxaReino", reino.getTaxaReino())
@@ -54,7 +54,7 @@ public class ReinoRepositoryImp implements ReinoRepository {
     @Override
     public Integer delete(Integer id) {
         return this.jdbcClient
-                .sql("DELETE FROM reino WHERE id = :id")
+                .sql("DELETE FROM reino WHERE idReino = :id")
                 .param("id", id)
                 .update();
     }

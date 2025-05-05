@@ -8,6 +8,7 @@ create table taxa( idTaxa int NOT NULL AUTO_INCREMENT, valorTaxa double, dataMud
 
 create table transacao( idTransacao int NOT NULL AUTO_INCREMENT, horaTransacao datetime, valorFinal double, fkProduto int, fkMoedaOrigem int, fkMoedaDestino int, PRIMARY KEY (idTransacao), FOREIGN KEY (fkProduto) REFERENCES produto(idProduto), FOREIGN KEY (fkMoedaOrigem) REFERENCES moeda(idMoeda), FOREIGN KEY (fkMoedaDestino) REFERENCES moeda(idMoeda) );
 
--- INSERT INTO moeda (nomeMoeda) VALUES ("Ouro Real"), ("Tibar");
+INSERT INTO moeda (nomeMoeda) VALUES ('Ouro Real'), ('Tibar');
+
 
 INSERT INTO taxa (valorTaxa, dataMudanca) VALUES (2.5, CURRENT_DATE());

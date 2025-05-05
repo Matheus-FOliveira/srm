@@ -19,7 +19,7 @@ public class TaxaRepositoryImp implements TaxaRepository {
     @Override
     public Optional<Taxa> findById(Integer id) {
         return this.jdbcClient
-                .sql("SELECT * FROM taxa WHERE id = :id")
+                .sql("SELECT * FROM taxa WHERE idTaxa = :id")
                 .param("id", id)
                 .query(Taxa.class)
                 .optional();
@@ -45,7 +45,7 @@ public class TaxaRepositoryImp implements TaxaRepository {
     @Override
     public Integer update(Taxa taxa, Integer id) {
         return this.jdbcClient
-                .sql("UPDATE taxa SET valorTaxa = :valorTaxa, dataMudanca = :dataMudanca WHERE id = :id")
+                .sql("UPDATE taxa SET valorTaxa = :valorTaxa, dataMudanca = :dataMudanca WHERE idTaxa = :id")
                 .param("id",id)
                 .param("valorTaxa", taxa.getValorTaxa())
                 .param("dataMudanca", taxa.getDataMudanca())
@@ -55,7 +55,7 @@ public class TaxaRepositoryImp implements TaxaRepository {
     @Override
     public Integer delete(Integer id) {
         return this.jdbcClient
-                .sql("DELETE FROM taxa WHERE id = :id")
+                .sql("DELETE FROM taxa WHERE idTaxa = :id")
                 .param("id", id)
                 .update();
     }

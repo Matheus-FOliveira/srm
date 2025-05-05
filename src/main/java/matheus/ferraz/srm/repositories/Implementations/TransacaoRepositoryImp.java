@@ -18,7 +18,7 @@ public class TransacaoRepositoryImp implements TransacaoRepository {
     @Override
     public Optional<Transacao> findById(Integer id) {
         return this.jdbcClient
-                .sql("SELECT * FROM transacao WHERE id = :id")
+                .sql("SELECT * FROM transacao WHERE idTransacao = :id")
                 .param("id", id)
                 .query(Transacao.class)
                 .optional();
@@ -47,7 +47,7 @@ public class TransacaoRepositoryImp implements TransacaoRepository {
     @Override
     public Integer update(Transacao transacao, Integer id) {
         return this.jdbcClient
-                .sql("UPDATE transacao SET horaTransacao = :horaTransacao, valorFinal = :valorFinal, fkProduto = :fkProduto, fkMoedaOrigem = :fkMoedaOrigem, fkMoedaDestino = :fkMoedaDestino WHERE id = :id")
+                .sql("UPDATE transacao SET horaTransacao = :horaTransacao, valorFinal = :valorFinal, fkProduto = :fkProduto, fkMoedaOrigem = :fkMoedaOrigem, fkMoedaDestino = :fkMoedaDestino WHERE idTransacao = :id")
                 .param("id",id)
                 .param("horaTransacao", transacao.getHoraTransacao())
                 .param("valorFinal", transacao.getValorFinal())
@@ -60,7 +60,7 @@ public class TransacaoRepositoryImp implements TransacaoRepository {
     @Override
     public Integer delete(Integer id) {
         return this.jdbcClient
-                .sql("DELETE FROM transacao WHERE id = :id")
+                .sql("DELETE FROM transacao WHERE idTransacao = :id")
                 .param("id", id)
                 .update();
     }

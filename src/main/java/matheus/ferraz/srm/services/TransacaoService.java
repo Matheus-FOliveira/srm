@@ -2,11 +2,13 @@ package matheus.ferraz.srm.services;
 
 import matheus.ferraz.srm.entities.Transacao;
 import matheus.ferraz.srm.repositories.TransacaoRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TransacaoService {
     private final TransacaoRepository transacaoRepository;
 

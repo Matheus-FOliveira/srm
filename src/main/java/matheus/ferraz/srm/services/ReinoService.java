@@ -2,11 +2,13 @@ package matheus.ferraz.srm.services;
 
 import matheus.ferraz.srm.entities.Reino;
 import matheus.ferraz.srm.repositories.ReinoRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ReinoService {
     private final ReinoRepository reinoRepository;
 
