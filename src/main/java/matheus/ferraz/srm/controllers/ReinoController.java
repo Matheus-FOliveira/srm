@@ -35,4 +35,10 @@ public class ReinoController {
         this.reinoService.addReino(reino);
         return ResponseEntity.status(201).build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@RequestBody Reino reino, @PathVariable("id") Integer id){
+        this.reinoService.updateReino(reino, id);
+        return ResponseEntity.ok().build();
+    }
 }
