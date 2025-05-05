@@ -50,11 +50,11 @@ public class TransacaoService {
         }
     }
 
-    public Double calcularValorFinal(Integer idProduto, Integer idMoedaOrigem, Integer idMoedaDestino){
+    public Double calcularValorFinal(Integer idProduto, Integer idMoedaOrigem){
         Double precoBase = this.produtoService.findProdutoById(idProduto).get().getValorOuro();
         Double taxaRegional = this.produtoService.getTaxaRegional(idProduto);
         if(idMoedaOrigem != 1){
-            this.produtoService.converterOuro(precoBase);
+            this.produtoService.converterTibar(precoBase);
         }
         return precoBase * taxaRegional;
     }

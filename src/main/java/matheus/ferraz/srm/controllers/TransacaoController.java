@@ -32,7 +32,7 @@ public class TransacaoController {
 
     @PostMapping
     public ResponseEntity<Void> addTransacao(@RequestParam Integer idProduto, @RequestParam Integer idMoedaOrigem, @RequestParam Integer idMoedaDestino){
-        var valorFinal = this.transacaoService.calcularValorFinal(idProduto, idMoedaOrigem, idMoedaDestino);
+        var valorFinal = this.transacaoService.calcularValorFinal(idProduto, idMoedaOrigem);
         Transacao transacao = new Transacao();
         transacao.setFkProduto(idProduto);
         transacao.setHoraTransacao(LocalDateTime.now());
