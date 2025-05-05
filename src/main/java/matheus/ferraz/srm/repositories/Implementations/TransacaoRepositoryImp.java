@@ -18,7 +18,10 @@ public class TransacaoRepositoryImp implements TransacaoRepository {
     @Override
     public Optional<Transacao> findById(Integer id) {
         return this.jdbcClient
-                .sql("SELECT * FROM transacao WHERE idTransacao = :id")
+                .sql("SELECT t.horaTransacao, t.valorFinal, p.nomeProduto, mo.nomeMoeda AS moedaOrigem, md.nomeMoeda AS moedaDestino FROM transacao t \n" +
+                        "INNER JOIN produto p ON t.fkProduto = p.idProduto \n" +
+                        "INNER JOIN moeda mo ON t.fkMoedaOrigem = mo.idMoeda\n" +
+                        "INNER JOIN moeda md ON t.fkMoedaDestino = md.idMoeda; WHERE idTransacao = :id")
                 .param("id", id)
                 .query(Transacao.class)
                 .optional();
@@ -27,7 +30,10 @@ public class TransacaoRepositoryImp implements TransacaoRepository {
     @Override
     public List<Transacao> findAll() {
         return this.jdbcClient
-                .sql("SELECT * FROM transacao")
+                .sql("SELECT t.horaTransacao, t.valorFinal, p.nomeProduto, mo.nomeMoeda AS moedaOrigem, md.nomeMoeda AS moedaDestino FROM transacao t \n" +
+                        "INNER JOIN produto p ON t.fkProduto = p.idProduto \n" +
+                        "INNER JOIN moeda mo ON t.fkMoedaOrigem = mo.idMoeda\n" +
+                        "INNER JOIN moeda md ON t.fkMoedaDestino = md.idMoeda;")
                 .query(Transacao.class)
                 .list();
     }

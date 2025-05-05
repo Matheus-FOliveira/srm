@@ -19,7 +19,7 @@ public class ProdutoRepositoryImp implements ProdutoRepository {
     @Override
     public Optional<Produto> findById(Integer id) {
         return this.jdbcClient
-                .sql("SELECT * FROM produto WHERE idProduto = :id")
+                .sql("SELECT p.nomeProduto, p.valorOuro, p.ValorTibar, r.nomeReino AS reinoOrigem, r.taxaReino AS taxa FROM produto p INNER JOIN reino r ON p.fkReinoOrigem = r.idReino WHERE ID = :id")
                 .param("id", id)
                 .query(Produto.class)
                 .optional();
@@ -28,7 +28,7 @@ public class ProdutoRepositoryImp implements ProdutoRepository {
     @Override
     public List<Produto> findAll() {
         return this.jdbcClient
-                .sql("SELECT * FROM produto")
+                .sql("SELECT p.nomeProduto, p.valorOuro, p.ValorTibar, r.nomeReino AS reinoOrigem, r.taxaReino AS taxa FROM produto p INNER JOIN reino r ON p.fkReinoOrigem = r.idReino")
                 .query(Produto.class)
                 .list();
     }
